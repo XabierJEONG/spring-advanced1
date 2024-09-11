@@ -1,6 +1,7 @@
 package org.example.expert.domain.manager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.expert.domain.common.annotation.Auth;
 import org.example.expert.domain.common.dto.AuthUser;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.manager.dto.request.ManagerSaveRequest;
@@ -73,8 +74,11 @@ public class ManagerService {
         return dtoList;
     }
 
+    // 4번 관심사 분리 - JWT 유효성 검사 로직 수정
     @Transactional
-    public void deleteManager(long userId, long todoId, long managerId) {
+    public void deleteManager(AuthUser authUser, long todoId, long managerId) {
+        Long userId = authUser.getId();
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidRequestException("User not found"));
 

@@ -38,12 +38,11 @@ public class ManagerController {
 
     @DeleteMapping("/todos/{todoId}/managers/{managerId}")
     public void deleteManager(
-            @RequestHeader("Authorization") String bearerToken,
+            @Auth AuthUser authUser,
             @PathVariable long todoId,
             @PathVariable long managerId
     ) {
-        Claims claims = jwtUtil.extractClaims(bearerToken.substring(7));
-        long userId = Long.parseLong(claims.getSubject());
-        managerService.deleteManager(userId, todoId, managerId);
+        // 4번 관심사 분리 - JWT 유효성 검사 로직 수정
+        managerService.deleteManager(authUser, todoId, managerId);
     }
 }
