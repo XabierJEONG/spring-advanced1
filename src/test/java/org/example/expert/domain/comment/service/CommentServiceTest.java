@@ -9,7 +9,6 @@ import org.example.expert.domain.common.dto.AuthUser;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.todo.entity.Todo;
 import org.example.expert.domain.todo.repository.TodoRepository;
-import org.example.expert.domain.user.dto.response.UserResponse;
 import org.example.expert.domain.user.entity.User;
 import org.example.expert.domain.user.enums.UserRole;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,6 +109,4 @@ class CommentServiceTest {
         assertEquals("contents", dtoList.get(1).getContents());
         assertEquals("email2", dtoList.get(1).getUser().getEmail());
     }
-
-
 }
